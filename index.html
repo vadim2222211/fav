@@ -1,138 +1,285 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAVBET - Підкрай vs Гімназія</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
-      color: #222;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #1b1464;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAVBET - Підкрай vs Гімназія | Ставки на футбол</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
+    color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background-color: #0d1b33dd;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    user-select: none;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 40px auto 60px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 40px;
+    color: #1e1e1e;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease;
+  }
+
+  main:hover {
+    transform: translateY(-5px);
+  }
+
+  h1 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #13294b;
+    margin-bottom: 5px;
+    text-align: center;
+    user-select: none;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #1a3c6a;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .match-info {
+    font-size: 1.2rem;
+    color: #495057;
+    margin-bottom: 35px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+  }
+
+  th, td {
+    padding: 18px 15px;
+    border-bottom: 2px solid #e9ecef;
+    text-align: center;
+  }
+
+  th {
+    background: linear-gradient(90deg, #0d6efd, #0a58ca);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  tbody tr:hover {
+    background-color: #e7f1ff;
+  }
+
+  td.bet-odds {
+    font-weight: 700;
+    color: #0d6efd;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+  }
+
+  td.bet-odds:hover {
+    background-color: #cde0ff;
+    cursor: pointer;
+  }
+
+  .highlight {
+    color: #dc3545;
+  }
+
+  .odds-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .btn-bet {
+    margin-top: 8px;
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgb(13 110 253 / 0.6);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+    display: inline-block;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .btn-bet:hover {
+    background: linear-gradient(135deg, #0a58ca, #0740a0);
+    box-shadow: 0 6px 14px rgb(10 88 202 / 0.8);
+  }
+
+  #payment {
+    margin-top: 50px;
+    border-top: 3px solid #0d6efd;
+    padding-top: 40px;
+    font-size: 1.3rem;
+    color: #212529;
+    text-align: center;
+  }
+
+  #payment strong {
+    color: #0d6efd;
+    font-size: 2rem;
+    user-select: all;
+  }
+
+  #payment p.description {
+    max-width: 700px;
+    margin: 15px auto 8px;
+    line-height: 1.6;
+    color: #495057;
+  }
+
+  #payment p.card-number {
+    font-weight: 900;
+    font-size: 2.8rem;
+    color: #0d6efd;
+    user-select: all;
+    margin: 10px 0;
+  }
+
+  #payment p.note {
+    font-style: italic;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 10px auto 20px;
+  }
+
+  #payment a.telegram-link {
+    font-weight: 800;
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  #payment a.telegram-link:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    padding: 25px 20px;
+    background: #0d1b33dd;
+    color: #f0f2f5;
+    font-size: 0.9rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+    user-select: none;
+  }
+
+  /* Адаптивність */
+  @media (max-width: 800px) {
     main {
-      max-width: 1000px;
-      margin: 40px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin: 20px;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
     }
     h2 {
-      text-align: center;
-      color: #1b1464;
-      font-size: 26px;
-      margin-bottom: 10px;
+      font-size: 1.4rem;
     }
-    .match-info {
-      text-align: center;
-      font-size: 18px;
-      color: #666;
+    table, th, td {
+      font-size: 1rem;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
+    #payment p.card-number {
+      font-size: 2rem;
     }
-    th, td {
-      padding: 18px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-      font-size: 18px;
-    }
-    th {
-      background-color: #f7f7f7;
-      font-weight: bold;
-    }
-    .highlight {
-      color: #e60000;
-      font-weight: bold;
-    }
-    .odds-label {
-      font-size: 14px;
-      color: #888;
-      margin-top: 5px;
-    }
-    .bet-button {
+  }
+
+  @media (max-width: 480px) {
+    .btn-bet {
       padding: 8px 16px;
-      background-color: #1b1464;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
+      font-size: 1rem;
     }
-    .bet-button:hover {
-      background-color: #292080;
+    #payment p.description, #payment p.note {
+      font-size: 1rem;
     }
-    .footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #777;
-      line-height: 1.6;
-      text-align: justify;
-    }
-    a {
-      color: #1b1464;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>FAVBET</header>
-  <main>
-    <h2>Чемпіонат району: Підкрай vs Гімназія</h2>
-    <div class="match-info">Стадіон "Гімназія", 23 червня 2025, 17:00</div>
-    <table>
+<header>FAVBET</header>
+<main>
+  <h1>Чемпіонат Вижницького району</h1>
+  <h2>Матч: Підкрай vs Гімназія</h2>
+  <div class="match-info">Стадіон "Гімназія" — 23 червня 2025 року, початок о 18:00</div>
+
+  <table>
+    <thead>
       <tr>
-        <th>Матч</th>
-        <th>1 <div class="odds-label">Підкрай</div></th>
-        <th>X <div class="odds-label">Нічия</div></th>
-        <th>2 <div class="odds-label">Гімназія</div></th>
+        <th>Подія</th>
+        <th>1</th>
+        <th>Нічия</th>
+        <th>2</th>
         <th>Обидві заб'ють</th>
         <th>Тотал більше 2.5</th>
         <th>Джекпот</th>
         <th>Диво ставка</th>
       </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>Підкрай vs Гімназія</td>
-        <td>2.35 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td>3.10 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td>2.80 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td>1.95 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td>2.20 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td>12.00 <br><a class="bet-button" href="#payment">Зробити ставку</a></td>
-        <td class="highlight">99.00 <br><span class="odds-label">Воротар полетить на джетпаку</span><br><a class="bet-button" href="#payment">Спробувати</a></td>
+        <td class="bet-odds">2.35<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds">3.10<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds">2.80<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds">1.95<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds">2.20<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds">12.00<br><a href="#payment" class="btn-bet">Ставка</a></td>
+        <td class="bet-odds highlight">99.00<br><span class="odds-label">Воротар полетить на джетпаку</span><br><a href="#payment" class="btn-bet">Спробувати</a></td>
       </tr>
-    </table>
+    </tbody>
+  </table>
 
-    <div id="payment" class="footer">
-      <h3>Оплата</h3>
-      <p>Щоб зробити ставку, переведи бажану суму на картку нижче:</p>
-      <p><strong>Картка для переказу:</strong> <span style="color:#1b1464; font-size: 18px;">4149 5110 2688 8354</span></p>
-      <p style="font-style: italic; color: #333;">💸 Ця карта заряджена на перемогу — твій внесок наближає до легендарного виграшу! 🔥</p>
-      <p>Після переказу, надішліть скріншот у Telegram: <a href="https://t.me/your_username" target="_blank">@your_username</a></p>
-    </div>
-
-    <div class="footer">
-      <p>FAVBET — один із провідних віртуальних букмекерських майданчиків, який дозволяє робити прогнози на всі рівні змагань: від Ліги чемпіонів до чемпіонату Вижницького району. Ми прагнемо створити реалістичну, інтерактивну платформу для фанатів спорту, адреналіну та справжнього азарту. Ставки на нестандартні події, такі як політ воротаря на джетпаку, лише підтверджують нашу унікальність і широту вибору.</p>
-    </div>
-  </main>
+  <section id="payment">
+    <h2>Оплата ставки</h2>
+    <p class="description">Щоб зробити ставку, переведи бажану суму на цю картку:</p>
+    <p class="card-number">4149 5110 2688 8354</p>
+    <p class="note">💸 Ця карта заряджена на перемогу — твій внесок наближає до легендарного виграшу! 🔥</p>
+    <p class="description">
+      Після переказу надішли скріншот у Telegram:  
+      <a href="https://t.me/favbetua" target="_blank" class="telegram-link">@favbetua</a>
+    </p>
+  </section>
+</main>
+<footer>
+  FAVBET — провідна платформа ставок на спорт із реалістичними коефіцієнтами. Ставки на чемпіонати різних рівнів: від Ліги чемпіонів до чемпіонатів районного масштабу.  
+  Унікальні ставки, як політ воротаря на джетпаку, роблять гру захопливою і непередбачуваною.
+</footer>
 </body>
 </html>
+
